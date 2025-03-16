@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+  --font-primary: "Space Grotesk", sans-serif;
+
+  --color-*: initial;
+  --color-deep-violet: #21092F;
+  --color-purplish-grey: #8F8694;
+  --color-light-grey: #DFDEE0;
+  --color-white: #FFFFFF;
+  --color-red: #FF5050;
+  --color-light-violet: #530f81;
+  --color-grey: #b6b6b6;
+  --color-gradient-start: #6348FE;
+  --color-gradient-end: #610595;
+
+  --bg-card-back: url('../public/images/bg-card-back.png');
+}
+

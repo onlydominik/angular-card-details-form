@@ -1,0 +1,48 @@
+{
+  "card-section": {
+    "images": {
+      "cardBackPath": "/images/bg-card-back.png",
+      "cardFrontPath": "/images/bg-card-front.png",
+      "cardLogoPath": "/images/card-logo.svg"
+    },
+    "placeholders": {
+      "name": "Jane Appleseed",
+      "cardNumber": "0000 0000 0000 0000",
+      "month": "00",
+      "year": "00",
+      "cvc": "000"
+    }
+
+  },
+  "card-form": {
+    "name": {
+      "label": "Cardholder Name",
+      "placeholder": "e.g. Jane Appleseed"
+    },
+    "cardNumber": {
+      "label": "Card Number",
+      "placeholder": "e.g. 1234 5678 9123 0000"
+    },
+    "expiryDate": {
+      "label": "Exp. Date (MM/YY)",
+      "month": {
+        "placeholder": "MM"
+      },
+      "year": {
+        "placeholder": "YY"
+      }
+    },
+    "cvc": {
+      "label": "CVC",
+      "placeholder": "e.g. 123"
+    },
+    "button": "Confirm"
+  },
+  "card-complete": {
+    "imagePath": "/images/icon-complete.svg",
+    "imageAlt":  "Card Complete",
+    "heading": "Thank You!",
+    "subheading": "We’ve added your card details",
+    "button": "Continue"
+  }
+}

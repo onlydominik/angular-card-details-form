@@ -1,0 +1,45 @@
+<section
+  class="bg-deep-violet h-[15rem] w-full cursor-default shadow-2xl xl:h-full xl:w-[30rem]"
+>
+  <div
+    class="mx-auto flex max-w-[23.4375rem] flex-col px-4 pt-8 xl:mr-[-8rem] xl:ml-auto xl:h-full xl:flex-col-reverse xl:justify-center xl:gap-8"
+  >
+    <div
+      class="flex h-[9.8125rem] w-[17.875rem] items-center justify-end self-end overflow-hidden rounded-md bg-cover pr-9 xl:h-[15rem] xl:w-[28rem] xl:self-start xl:rounded-xl xl:pr-14"
+      [appBgImage]="imageBgBackCard"
+    >
+      <p
+        class="mb-1 text-[0.5625rem] tracking-[1.29px] text-white xl:mb-0 xl:text-sm"
+      >
+        {{ cardDataService.data().cvc }}
+      </p>
+    </div>
+    <div
+      class="mt-[-4.3rem] flex h-[9.8125rem] w-[17.875rem] flex-col justify-between self-start overflow-hidden rounded-md bg-cover p-5 xl:h-[15rem] xl:w-[28rem] xl:self-end xl:rounded-xl"
+      [appBgImage]="imageBgFrontCard"
+    >
+      <img
+        [ngSrc]="cardLogo"
+        width="84"
+        height="47"
+        alt="Card logo"
+        class="h-[1.875rem] w-[3.375rem] xl:h-[2.9375rem] xl:w-[5.25rem]"
+      />
+      <div class="font-primary flex flex-col gap-3 text-lg text-white">
+        <p
+          class="w-full text-start font-medium tracking-[2.2px] xl:text-[1.75rem]"
+        >
+          {{ cardDataService.data().number }}
+        </p>
+        <div
+          class="xl:text-font-light flex justify-between text-[0.5625rem] tracking-[1.29px] xl:text-sm"
+        >
+          <p>{{ cardDataService.data().name?.toUpperCase() }}</p>
+          <p>
+            {{ cardDataService.data().month }}/{{ cardDataService.data().year }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,131 @@
+@if (formSubmittedCorrectly()) {
+  <div
+    class="mb-[5.125rem] grid w-full px-6 text-center xl:mr-auto xl:h-full xl:max-w-[23.75rem] xl:content-center"
+  >
+    <img
+      ngSrc="{{ CONTENT['card-complete'].imagePath }}"
+      width="80"
+      height="80"
+      alt="{{ CONTENT['card-complete'].imageAlt }}"
+      class="mx-auto mb-[2.1875em]"
+    />
+    <p class="text-deep-violet mb-4 text-[1.75rem] tracking-[3.42px]">
+      {{ CONTENT["card-complete"].heading.toUpperCase() }}
+    </p>
+    <p class="text-purplish-grey text-lg">
+      {{ CONTENT["card-complete"].subheading }}
+    </p>
+    <button
+      (click)="onContinue()"
+      class="bg-deep-violet mt-12 cursor-pointer rounded-lg py-3.5 text-lg text-white"
+    >
+      {{ CONTENT["card-complete"].button }}
+    </button>
+  </div>
+} @else {
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="font-primary mb-[2.8125rem] grid w-full grid-flow-row-dense gap-5 px-6 xl:mr-auto xl:h-full xl:max-w-[23.75rem] xl:content-center"
+  >
+    <label for="name" [class]="labelClasses">
+      {{ CONTENT["card-form"].name.label.toUpperCase() }}
+      <input
+        [class]="inputClasses"
+        [ngClass]="isFieldInvalid('name') ? inputInvalid : ''"
+        type="text"
+        id="name"
+        name="name"
+        placeholder="{{ CONTENT['card-form'].name.placeholder }}"
+        maxlength="23"
+        formControlName="name"
+      />
+      @if (isFieldInvalid("name")) {
+        <p [class]="invalidMessageClasses">Please enter full name</p>
+      }
+    </label>
+
+    <label for="cardNumber" [class]="labelClasses">
+      {{ CONTENT["card-form"].cardNumber.label.toUpperCase() }}
+      <input
+        [class]="inputClasses"
+        [ngClass]="isFieldInvalid('number') ? inputInvalid : ''"
+        type="text"
+        id="cardNumber"
+        name="cardNumber"
+        placeholder="{{ CONTENT['card-form'].cardNumber.placeholder }}"
+        maxlength="19"
+        formControlName="number"
+        appTextFormatCreditCard
+      />
+      @if (isFieldInvalid("number")) {
+        <p [class]="invalidMessageClasses">Please enter valid card number</p>
+      }
+    </label>
+
+    <div class="grid grid-cols-2 gap-[0.6875em]">
+      <label for="dateMonth" [class]="labelClasses">
+        {{ CONTENT["card-form"].expiryDate.label.toUpperCase() }}
+        <div class="flex gap-[0.5em]">
+          <input
+            [class]="inputClasses"
+            [ngClass]="isFieldInvalid('month') ? inputInvalid : ''"
+            type="text"
+            id="dateMonth"
+            name="dateMonth"
+            placeholder="{{
+              CONTENT['card-form'].expiryDate.month.placeholder
+            }}"
+            maxlength="2"
+            formControlName="month"
+            appOnlyNumbers
+          />
+
+          <input
+            [class]="inputClasses"
+            [ngClass]="isFieldInvalid('year') ? inputInvalid : ''"
+            type="text"
+            id="dateYear"
+            name="dateYear"
+            placeholder="{{ CONTENT['card-form'].expiryDate.year.placeholder }}"
+            formControlName="year"
+            maxlength="2"
+            appOnlyNumbers
+          />
+        </div>
+        @if (isFieldInvalid("month") || isFieldInvalid("year")) {
+          @if (hasDateRangeError()) {
+            <p [class]="invalidMessageClasses">Please enter valid date</p>
+          } @else {
+            <p [class]="invalidMessageClasses">Can't be blank</p>
+          }
+        }
+      </label>
+      <label for="cvc" [class]="labelClasses">
+        {{ CONTENT["card-form"].cvc.label.toUpperCase() }}
+        <input
+          [class]="inputClasses"
+          [ngClass]="isFieldInvalid('cvc') ? inputInvalid : ''"
+          type="text"
+          id="cvc"
+          name="cvc"
+          placeholder="{{ CONTENT['card-form'].cvc.placeholder }}"
+          formControlName="cvc"
+          maxlength="3"
+          appOnlyNumbers
+        />
+        @if (isFieldInvalid("cvc")) {
+          <p [class]="invalidMessageClasses">Please enter valid code</p>
+        }
+      </label>
+    </div>
+
+    <button
+      type="submit"
+      class="bg-deep-violet disabled:bg-light-grey/50 disabled:border-grey/30 disabled:text-grey mt-2 cursor-pointer rounded-lg py-3.5 text-lg text-white disabled:cursor-not-allowed disabled:border-1"
+      [disabled]="!form.valid"
+    >
+      {{ CONTENT["card-form"].button }}
+    </button>
+  </form>
+}
